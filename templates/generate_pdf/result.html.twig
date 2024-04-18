@@ -1,0 +1,17 @@
+{# templates/pdf/generate_pdf.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Generate PDF{% endblock %}
+
+{% block body %}
+    <h1>result PDF</h1>
+
+    {% if pdfContent is defined %}
+        <h1>PDF Content</h1>
+        {{ pdfContent|raw }}
+    {% else %}
+        {# Votre formulaire ici #}
+        {{ form(form) }}
+    {% endif %}
+{% endblock %}
