@@ -6,7 +6,17 @@
 
 {% block body %}
     <h1>Generate PDF</h1>
+    tokens restants {{ tokens }}
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.url) }}
 
-    {{ form(form) }}
+    {% if tokens > 0 %}
+        <button type="submit">Générer</button>
+    {% else %}
+        <button type="submit" disabled>Générer</button>
+        <p>Vous n'avez plus de jetons<span>passez à la vitesse supérieur</span></p>
+    {% endif %}
+    {{ form_end(form) }}
 
 {% endblock %}

@@ -14,7 +14,6 @@ class pdf_form extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('url', TextType::class)
-            ->add('save', SubmitType::class)
         ;
     }
 }

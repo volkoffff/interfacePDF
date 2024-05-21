@@ -52,6 +52,10 @@ class GeneratePdfController extends AbstractController
                 throw new \Exception('Failed to generate PDF from URL.');
             }
 
+            // remove 1 token from the user
+            $user = $this->getUser();
+            $user -> setTokens($user->getTokens() - 1);
+
             // Récupérer le contenu du PDF généré
             $pdfContent = $response->getContent();
 
@@ -71,6 +75,7 @@ class GeneratePdfController extends AbstractController
             $entityManager->persist($pdf);
             $entityManager->flush();
 
+            // Récupérer le chemin et le nom du fichier PDF généré
             $pdfContent = $pdf->getFilePath();
             $pdfTitle = $pdf->getTitle();
 
@@ -84,6 +89,7 @@ class GeneratePdfController extends AbstractController
         // Afficher le formulaire
         return $this->render('generate_pdf/index.html.twig', [
             'form' => $form->createView(),
+            'tokens' => $this->getUser()->getTokens(),
         ]);
     }
 }
