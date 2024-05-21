@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class GeneratePdfController extends AbstractController
     {
-    #[Route('/form', name: 'form_pdf', methods: ['POST', 'GET'])]
+    #[Route('/generate_pdf', name: 'form_pdf', methods: ['POST', 'GET'])]
     public function generatePdf(Request $request, EntityManagerInterface $entityManager): Response
     {
         // Créer le formulaire

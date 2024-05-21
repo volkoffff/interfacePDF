@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SubscriptionController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Subscription plans</h1>
+    <p>{{ subscriptionId }}</p>
+    <div>
+        {{ free.id }}
+        {{ free.title }}
+        {{ free.description }}
+        {{ free.pdfLimit }}
+        {% if subscriptionId != free.id %}
+            <a href="{{ path('change_subscription', {id: free.id}) }}">choisir</a>
+        {% else %}
+            <button disabled>choisir</button>
+        {% endif %}
+    </div>
+
+    <div>
+    {{ pro.id }}
+    {{ pro.title }}
+    {{ pro.description }}
+    {{ pro.pdfLimit }}
+    {% if subscriptionId != pro.id %}
+        <a href="{{ path('change_subscription', {id: pro.id}) }}">choisir</a>
+    {% else %}
+        <button disabled>choisir</button>
+    {% endif %}
+    </div>
+
+    <div>
+    {{ entreprise.id }}
+    {{ entreprise.title }}
+    {{ entreprise.description }}
+    {{ entreprise.pdfLimit }}
+    {% if subscriptionId != entreprise.id %}
+        <a href="{{ path('change_subscription', {id: entreprise.id}) }}">choisir</a>
+    {% else %}
+        <button disabled>choisir</button>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
