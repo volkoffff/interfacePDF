@@ -57,7 +57,7 @@ class GeneratePdfController extends AbstractController
 
             // Enregistrer le PDF dans le dossier "upload"
             $fileName = 'generated_pdf_' . uniqid() . '.pdf'; // Nom du fichier généré
-            $uploadDirectory = $this->getParameter('kernel.project_dir') . '/public/upload'; // Chemin vers le dossier "upload"
+            $uploadDirectory = $this->getParameter('kernel.project_dir') . '/public/uploads'; // Chemin vers le dossier "upload"
             $filePath = $uploadDirectory . '/' . $fileName;
 
             // Écrire le contenu du PDF dans un fichier
@@ -66,13 +66,18 @@ class GeneratePdfController extends AbstractController
             $pdf = new Pdf();
             $pdf -> setTitle($title);
             $pdf -> setCreatedAt(new \DateTimeImmutable());
-            $pdf -> setFilePath('uploads/' . $fileName . '.pdf');
+            $pdf -> setFilePath('uploads/' . $fileName);
+            $pdf -> setOwner($this->getUser());
             $entityManager->persist($pdf);
             $entityManager->flush();
+
+            $pdfContent = $pdf->getFilePath();
+            $pdfTitle = $pdf->getTitle();
 
             // afficher une réponse appropriée
             return $this->render('generate_pdf/result.html.twig', [
                 'pdfContent' => $pdfContent,
+                'pdfTitle' => $pdfTitle,
             ]);
         }
 

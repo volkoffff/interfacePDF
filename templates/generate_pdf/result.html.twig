@@ -9,9 +9,10 @@
 
     {% if pdfContent is defined %}
         <h1>PDF Content</h1>
-        {{ pdfContent|raw }}
-    {% else %}
-        {# Votre formulaire ici #}
-        {{ form(form) }}
+        <p>{{ pdfTitle }}</p>
+        <iframe src="{{ asset(pdfContent) }}"     frameBorder="0"
+                scrolling="auto"
+                height="100%"
+                width="100%"alt=""></iframe>
     {% endif %}
 {% endblock %}
