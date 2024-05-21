@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Pdf::class, mappedBy: 'owner')]
     private Collection $pdfs;
 
+    #[ORM\Column(length: 255)]
+    private ?string $tokens = null;
+
     public function __construct()
     {
         $this->pdfs = new ArrayCollection();
@@ -161,6 +164,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $pdf->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTokens(): ?string
+    {
+        return $this->tokens;
+    }
+
+    public function setTokens(string $tokens): static
+    {
+        $this->tokens = $tokens;
 
         return $this;
     }

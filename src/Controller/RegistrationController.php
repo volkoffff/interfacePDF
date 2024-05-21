@@ -24,6 +24,9 @@ class RegistrationController extends AbstractController
         // get the user roles by chosing default id 2 = Free
         $subscription = $entityManager->getRepository(Subscription::class)->find(2);
         $user -> setSubscription($subscription);
+        $user -> setRoles(['ROLE_USER']);
+        $tokens = $entityManager->getRepository(Subscription::class)->find(2)->getPdfLimit();
+        $user -> setTokens($tokens);
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
