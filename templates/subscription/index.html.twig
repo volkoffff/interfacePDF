@@ -3,48 +3,234 @@
 {% block title %}Hello SubscriptionController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Subscription plans</h1>
-    <p>{{ subscriptionId }}</p>
-    <div>
-        {{ free.id }}
-        {{ free.title }}
-        {{ free.description }}
-        {{ free.pdfLimit }}
-        {% if subscriptionId != free.id %}
-            <a href="{{ path('change_subscription', {id: free.id}) }}">choisir</a>
-        {% else %}
-            <button disabled>choisir</button>
-        {% endif %}
-    </div>
+    <div class="h-screen flex flex-col items-center pt-20">
+        <div class="top-[20vh] left-[24vw] absolute animate-[bounce_8s_ease-in-out_infinite]"><img class="w-[65px]" style="filter: drop-shadow(0px 0px 15px rgba(255,255,255,0.84));" src="{{ asset("images/star.png") }}" alt=""></div>
+        <div class="top-[80vh] left-[8vw] absolute animate-bounce"><img class="w-[20px]" style="filter: drop-shadow(0px 0px 15px rgba(255,255,255,0.84));" src="{{ asset("images/star.png") }}" alt=""></div>
+        <div class="top-[88vh] right-[18vw] absolute animate-[bounce_2.4s_ease-in-out_infinite]"><img class="w-[30px]" style="filter: drop-shadow(0px 0px 15px rgba(255,255,255,0.84));" src="{{ asset("images/star.png") }}" alt=""></div>
+        <div class="top-[30vh] right-[5vw] absolute animate-[bounce_4s_ease-in-out_infinite]"><img class="w-[40px]" style="filter: drop-shadow(0px 0px 30px rgba(255,255,255));" src="{{ asset("images/star.png") }}" alt=""></div>
+        <div class='max-w-xl mx-auto space-y-3 px-4 sm:text-center sm:px-0'>
+            <h3 class="text-violet-400 font-semibold">
+                Abonnement
+            </h3>
+            <p class='text-white text-3xl font-semibold sm:text-4xl'>
+                Payez à mesure de votre croissance
+            </p>
+            <div class='max-w-xl'>
+                <p>
+                    Des tarifs flexibles qui s'adaptent à vos besoins et à votre développement.
+                </p>
+            </div>
+        </div>
+        <div class="container mx-auto grid lg:grid-cols-3 gap-5 mt-12">
+            <div class="h-fit px-6 py-4 transition-colors duration-200 transform bg-neutral-800/60 backdrop-blur rounded-2xl dark:bg-gray-600">
+                <p class="text-lg font-medium text-gray-100">{{ free.title }}</p>
+                <h4 class="mt-2 text-4xl font-semibold text-gray-100">{{ free.price }}€ <span
+                            class="text-base font-normal text-gray-400">/ Month</span></h4>
+                <p class="mt-4 text-gray-400">{{ free.description }}</p>
 
-    <div>
-    {{ pro.id }}
-    {{ pro.title }}
-    {{ pro.description }}
-    {{ pro.pdfLimit }}
-    {% if subscriptionId != pro.id %}
-        <a href="{{ path('change_subscription', {id: pro.id}) }}">choisir</a>
-    {% else %}
-        <button disabled>choisir</button>
-    {% endif %}
-    </div>
+                <div class="mt-8 space-y-2">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
 
-    <div>
-    {{ entreprise.id }}
-    {{ entreprise.title }}
-    {{ entreprise.description }}
-    {{ entreprise.pdfLimit }}
-    {% if subscriptionId != entreprise.id %}
-        <a href="{{ path('change_subscription', {id: entreprise.id}) }}">choisir</a>
-    {% else %}
-        <button disabled>choisir</button>
-    {% endif %}
+                        <span class="mx-4 text-gray-300">{{ free.pdfLimit }} générations par mois</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Own analytics platform</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Chat support</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Optimize hashtags</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Unlimited users</span>
+                    </div>
+                </div>
+
+                {% if subscriptionId != free.id %}
+                    <a class="block text-center px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-violet-500 rounded-lg hover:bg-violet-600 focus:outline-none focus:bg-violet-600" href="{{ path('change_subscription', {id: free.id}) }}">Choisir le plan</a>
+                {% else %}
+                    <button class="block w-full text-center px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-violet-800 rounded-lg" disabled>Choisir le plan</button>
+                {% endif %}
+            </div>
+            <div class="h-fit border-4 border-violet-500 scale-105 px-6 py-4 transition-colors duration-200 transform bg-neutral-800/60 backdrop-blur rounded-2xl dark:bg-gray-600">
+                <p class="absolute right-2 top-2 px-2 py-1 text-xs font-semibold text-white rounded-full bg-violet-500">Populaire</p>
+                <p class="text-lg font-medium text-gray-100">{{ pro.title }}</p>
+                <h4 class="mt-2 text-4xl font-semibold text-gray-100">{{ pro.price }}€ <span
+                            class="text-base font-normal text-gray-400">/ Month</span></h4>
+                <p class="mt-4 text-gray-400">{{ pro.description }}</p>
+
+                <div class="mt-8 space-y-2">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">{{ pro.pdfLimit }} générations par mois</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Own analytics platform</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Chat support</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Optimize hashtags</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Unlimited users</span>
+                    </div>
+                </div>
+
+                {% if subscriptionId != pro.id %}
+                    <a class="block text-center px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-violet-500 rounded-lg hover:bg-violet-600 focus:outline-none focus:bg-violet-600" href="{{ path('change_subscription', {id: pro.id}) }}">Choisir le plan</a>
+                {% else %}
+                    <button class="block w-full text-center px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-violet-800 rounded-lg" disabled>Choisir le plan</button>
+                {% endif %}
+            </div>
+            <div class="h-fit px-6 py-4 transition-colors duration-200 transform bg-neutral-800/60 backdrop-blur rounded-2xl dark:bg-gray-600">
+                <p class="text-lg font-medium text-gray-100">{{ entreprise.title }}</p>
+                <h4 class="mt-2 text-4xl font-semibold text-gray-100">{{ entreprise.price }}€ <span
+                            class="text-base font-normal text-gray-400">/ Month</span></h4>
+                <p class="mt-4 text-gray-400">{{ entreprise.description }}</p>
+
+                <div class="mt-8 space-y-2">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">{{ entreprise.pdfLimit }} générations par mois</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Own analytics platform</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Chat support</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Optimize hashtags</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-500" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+
+                        <span class="mx-4 text-gray-300">Unlimited users</span>
+                    </div>
+                </div>
+
+                {% if subscriptionId != entreprise.id %}
+                    <a class="block text-center px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-violet-500 rounded-lg hover:bg-violet-600 focus:outline-none focus:bg-violet-600" href="{{ path('change_subscription', {id: entreprise.id}) }}">Choisir le plan</a>
+                {% else %}
+                    <button class="block w-full text-center px-4 py-2 mt-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-violet-800 rounded-lg" disabled>Choisir le plan</button>
+                {% endif %}
+            </div>
+        </div>
     </div>
-</div>
 {% endblock %}

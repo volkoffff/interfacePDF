@@ -11,7 +11,7 @@ class PricingController extends AbstractController
     #[Route('/pricing', name: 'app_pricing')]
     public function index(): Response
     {
-        return $this->render('pricing/index.html.twig', [
+        return $this->render('pricing/pricing.html.twig', [
             'controller_name' => 'PricingController',
         ]);
     }

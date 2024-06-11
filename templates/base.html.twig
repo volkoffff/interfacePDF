@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
-
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-    <div>
-        <a href="/">Home</a>
-        <a href="generate_pdf">print a pdf</a>
-        <a href="history">Historique</a>
-        <a href="subscription">Subscription</a>
-        <a href="profile">Profile</a>
-        <a href="register">Register</a>
-        <a href="login">Login</a>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+<body class="bg-black flex flex-col justify-between overflow-x-hidden">
+<div class="relative overflow-hidden flex-1 min-h-screen">
+    <nav class="fixed w-full top-0 z-50 transition-all duration-700 ">
+        <div class="container mx-auto py-4 flex justify-between items-center">
+            <div><h2 class="text-lg font-semibold ">Sublime.</h2></div>
+            <div class="group flex items-center [&>a]:mix-blend-difference [&>a]:px-2 [&>a]:transition-all [&>a]:text-slate-200 [&>a:hover]:!text-white">
+                <a class="group-has-[a:hover]:text-neutral-500 " href="/">Accueil</a>
+                <a class="group-has-[a:hover]:text-neutral-500 " href="generate_pdf">Générer un PDF</a>
+                <a class="group-has-[a:hover]:text-neutral-500 " href="history">Historique</a>
+                <a class="group-has-[a:hover]:text-neutral-500 " href="subscription">Abonnement</a>
+                <a class="group-has-[a:hover]:text-neutral-500 " href="profile">Profile</a>
+                <a class="group-has-[a:hover]:text-neutral-500 " href="register">Inscription</a>
+                <a class="group-has-[a:hover]:text-neutral-500 " href="login">Connexion</a>
+            </div>
+        </div>
+    </nav>
+    <img class="bg-cover z-0 top-0 absolute w-full scale-105" src="{{ asset("images/blury.png") }}" alt="">
+    <img class="z-[1] top-0 absolute opacity-30 bg-cover scale-105" src="{{ asset("images/grany.png") }}" alt="">
+    <div class="z-10 relative">
         {% block body %}{% endblock %}
-    </body>
+    </div>
+</div>
+{% include 'footer.html.twig' %}
+</body>
+<script defer>
+    const nav = document.querySelector('nav');
+    window.onscroll = function () {
+        if (window.pageYOffset > 40) {
+            nav.classList.add("sm:bg-black/40");
+            nav.classList.add("sm:backdrop-blur-md");
+        } else {
+            nav.classList.remove("sm:bg-black/40");
+            nav.classList.remove("sm:backdrop-blur-md");
+        }
+    };
+</script>
 </html>

@@ -12,8 +12,18 @@ class pdf_form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('url', TextType::class)
+            ->add('title', TextType::class, [
+                'required'   => true,
+                'attr' => [
+                    'placeholder' => 'https://example.com',
+                ],
+            ])
+            ->add('url', TextType::class, [
+                'required'   => true,
+                'attr' => [
+                    'placeholder' => 'Nom du PDF',
+                ],
+            ])
         ;
     }
 }

@@ -5,18 +5,26 @@
 {% block title %}Generate PDF{% endblock %}
 
 {% block body %}
-    <h1>Generate PDF</h1>
-    tokens restants {{ tokens }}
-    {{ form_start(form) }}
-    {{ form_row(form.title) }}
-    {{ form_row(form.url) }}
+    <div class="blury h-screen grid content-center relative">
+            <div class="bg-neutral-800/60 p-1 w-fit rounded-full flex mx-auto mb-24">
+                <button class="text-white bg-neutral-800/90 w-fit px-4 py-1.5 rounded-full">Page URL</button>
+                <button disabled class="relative text-neutral-400 w-fit px-4 py-1.5 rounded-full">Sandbox</button>
+            </div>
+            <p class="container mx-auto text-center mb-1 uppercase text-neutral-300 tracking-wide">Vous avec {{ tokens }} Tokens restants</p>
+            <h1 class="text-4xl font-semibold md:text-7xl md:leading-tight container mx-auto text-center">Un URL sufit dans sublime pour obtenir un super PDF</h1>
+            <div class="container mx-auto mt-12">
+                {{ form_start(form, {attr: {class: "max-w-4xl mx-auto flex bg-neutral-800/60 backdrop-blur p-1 rounded-full shadow transition-all has-[:focus]:shadow-[0_0_0_4px_rgba(160,51,234,0.5)]"}}) }}
+                    {{ form_row(form.title, { label_attr: {class: "hidden"}, row_attr: {class: "flex-1"}, attr: {class: "h-12 w-full pl-5 text-white bg-transparent rounded-full focus:outline-none"}}) }}
+                    {{ form_row(form.url, {label_attr: {class: "hidden"}, row_attr: {class: "flex-1"}, attr: {class: "h-12 w-full pl-5 text-white bg-transparent rounded-full focus:outline-none"}}) }}
 
-    {% if tokens > 0 %}
-        <button type="submit">Générer</button>
-    {% else %}
-        <button type="submit" disabled>Générer</button>
-        <p>Vous n'avez plus de jetons<span>passez à la vitesse supérieur</span></p>
-    {% endif %}
-    {{ form_end(form) }}
+                    {% if tokens > 0 %}
+                        <button class="rounded-full bg-violet-600 hover:bg-violet-600/90 text-white font-semibold px-4 pl-5" type="submit">Générer un pdf ✨</button>
+                    {% else %}
+                        <button type="submit" disabled>Générer</button>
+                        <p>Vous n'avez plus de jetons<span>passez à la vitesse supérieur</span></p>
+                    {% endif %}
+                {{ form_end(form) }}
+            </div>
+    </div>
 
 {% endblock %}
