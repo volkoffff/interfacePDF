@@ -15,13 +15,13 @@ class pdf_form extends AbstractType
             ->add('title', TextType::class, [
                 'required'   => true,
                 'attr' => [
-                    'placeholder' => 'https://example.com',
+                    'placeholder' => 'Nom du PDF',
                 ],
             ])
             ->add('url', TextType::class, [
                 'required'   => true,
                 'attr' => [
-                    'placeholder' => 'Nom du PDF',
+                    'placeholder' => 'https://example.com',
                 ],
             ])
         ;

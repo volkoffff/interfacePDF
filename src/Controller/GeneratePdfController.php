@@ -31,6 +31,11 @@ class GeneratePdfController extends AbstractController
             $url = $form->getData()['url'];
             $title = $form->getData()['title'];
 
+            // vérifier si l'URL contient "https://"
+            if (!str_contains($url, 'https://')) {
+                $url = 'https://' . $url;
+            };
+
             $client = httpClient::create();
 
             $response = $client->request(
