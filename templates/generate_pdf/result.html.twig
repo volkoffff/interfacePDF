@@ -5,14 +5,23 @@
 {% block title %}Generate PDF{% endblock %}
 
 {% block body %}
-    <h1>result PDF</h1>
-
     {% if pdfContent is defined %}
-        <h1>PDF Content</h1>
-        <p>{{ pdfTitle }}</p>
-        <iframe src="{{ asset(pdfContent) }}"     frameBorder="0"
+        <div class="min-h-screen w-full flex items-center ">
+            <div class="flex gap-6 container mx-auto">
+
+        <iframe src="{{ asset(pdfContent) }}"
                 scrolling="auto"
                 height="100%"
-                width="100%"alt=""></iframe>
+                width="100%"
+                alt=""
+                class="w-[400px]"
+        ></iframe>
+            <div class="h-full mt-2">
+                <p class="text-white text-4xl font-semibold md:text-7xl">{{ pdfTitle }}</p>
+                <p class="mt-2">{{ pdfUrl }}</p>
+                <a href="/history" class="mt-6 inline-flex items-center gap-2 rounded-full py-3 px-12 text-sm/6 font-semibold text-white border border-white">Voir l'historique des téléchargements</a>
+            </div>
+            </div>
+        </div>
     {% endif %}
 {% endblock %}

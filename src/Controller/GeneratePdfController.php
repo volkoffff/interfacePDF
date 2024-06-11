@@ -88,6 +88,7 @@ class GeneratePdfController extends AbstractController
             return $this->render('generate_pdf/result.html.twig', [
                 'pdfContent' => $pdfContent,
                 'pdfTitle' => $pdfTitle,
+                'pdfUrl' => $url,
             ]);
         }
 

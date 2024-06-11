@@ -8,3 +8,6 @@ h1, h2, h3, h4, h5, h6 {
 p {
   color: #d8d8d8;
 }
+iframe {
+  aspect-ratio: 9/11.8;
+}
