@@ -3,17 +3,25 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
+    <div class="top-[20vh] left-[24vw] absolute animate-[bounce_8s_ease-in-out_infinite]"><img class="w-[65px]" style="filter: drop-shadow(0px 0px 15px rgba(255,255,255,0.84));" src="{{ asset("images/star.png") }}" alt=""></div>
+    <div class="top-[70vh] left-[8vw] absolute animate-bounce"><img class="w-[20px]" style="filter: drop-shadow(0px 0px 15px rgba(255,255,255,0.84));" src="{{ asset("images/star.png") }}" alt=""></div>
+    <div class="top-[80vh] right-[18vw] absolute animate-[bounce_2.4s_ease-in-out_infinite]"><img class="w-[30px]" style="filter: drop-shadow(0px 0px 15px rgba(255,255,255,0.84));" src="{{ asset("images/star.png") }}" alt=""></div>
+    <div class="top-[30vh] right-[5vw] absolute animate-[bounce_4s_ease-in-out_infinite]"><img class="w-[40px]" style="filter: drop-shadow(0px 0px 30px rgba(255,255,255));" src="{{ asset("images/star.png") }}" alt=""></div>
+    <div class="h-screen w-full flex items-center justify-center">
     {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    {{ form_start(registrationForm, {attr: {class:"bg-black/40 backdrop-blur-md rounded-xl p-6 w-[380px] space-y-3"}}) }}
+        <div class="pb-3 space-y-1">
+            <h1 class=" text-center text-3xl font-semibold">Inscription</h1>
+            <p class="text-center text-neutral-300 text-sm">Accédez à votre compte Sublime pour générer les meilleurs PDF</p>
+        </div>
+        {{ form_row(registrationForm.email, { label_attr: {class: "text-neutral-100"}, row_attr: {class: "flex flex-col gap-1.5"}, attr: {class: "h-10 rounded-lg bg-black/30 text-white pl-3"}}) }}
+        {{ form_row(registrationForm.plainPassword, { label: 'password', label_attr: {class: "text-neutral-100"}, row_attr: {class: "flex flex-col gap-1.5"}, attr: {class: "h-10 rounded-lg bg-black/30 text-white pl-3"}}) }}
+        {{ form_row(registrationForm.agreeTerms, {label_attr: {class: 'text-white'}, attr:{class:'ml-2'}}) }}
+        <div class="pt-3">
+        <button type="submit" class="rounded-lg bg-violet-600 hover:bg-violet-600/90 text-white font-semibold px-4 h-10 w-full">Register</button>
+        </div>
+            {{ form_end(registrationForm) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
