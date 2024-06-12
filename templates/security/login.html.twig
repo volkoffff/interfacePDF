@@ -11,9 +11,9 @@
     <form method="post" class="bg-black/40 backdrop-blur-md rounded-xl p-6 w-[380px] space-y-3">
 
         {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
+            <p class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a class="underline" href="{{ path('app_logout') }}">Logout</a>
+            </p>
         {% endif %}
         <div class="pb-3 space-y-1">
             <h1 class=" text-center text-3xl font-semibold">Connexion</h1>

@@ -22,6 +22,9 @@
                         <button class=" rounded-full bg-violet-800 text-white font-semibold px-4 pl-5 hover:pointer-events-none select-none" type="submit">Générer un pdf ✨</button>
                     {% endif %}
                 {{ form_end(form) }}
+                {% if error %}
+                    <p class="text-center text-red-500 mt-3">{{ error }}</p>
+                {% endif %}
                 {% if tokens > 0 %}
                     <p class="text-center text-neutral-300 mt-3">Vous avez {{ tokens }} jetons restants</p>
                 {% else %}

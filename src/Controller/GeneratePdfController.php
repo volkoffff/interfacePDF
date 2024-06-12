@@ -32,9 +32,19 @@ class GeneratePdfController extends AbstractController
             $title = $form->getData()['title'];
 
             // vérifier si l'URL contient "https://"
+            if (!str_contains($url, 'www.')) {
+                return $this->render('generate_pdf/index.html.twig', [
+                    'form' => $form->createView(),
+                    'tokens' => $this->getUser()->getTokens(),
+                    'error' => 'Svp entrer une URL valide. Exemple: https://www.google.com',
+                ]);
+            };
+
+            // vérifier si l'URL contient "https://"
             if (!str_contains($url, 'https://')) {
                 $url = 'https://' . $url;
             };
+
 
             $client = httpClient::create();
 
@@ -96,6 +106,7 @@ class GeneratePdfController extends AbstractController
         return $this->render('generate_pdf/index.html.twig', [
             'form' => $form->createView(),
             'tokens' => $this->getUser()->getTokens(),
+            'error' => null,
         ]);
     }
 }
