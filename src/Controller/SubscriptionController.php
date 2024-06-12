@@ -20,9 +20,13 @@ class SubscriptionController extends AbstractController
         $entreprise = $entityManager->getRepository(Subscription::class)->find(4);
 
         // get the actual user subscription
+        if ($this->getUser() !== null) {
         $user = $this->getUser();
         $subscription = $user->getSubscription();
         $subscription_id = $subscription->getId();
+        } else {
+            $subscription_id = 0;
+        }
 
 
         return $this->render('subscription/index.html.twig', [
@@ -35,6 +39,7 @@ class SubscriptionController extends AbstractController
     #[Route('/subscription/{id}', name: 'change_subscription')]
     public function index2(Subscription $subscription, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser() !== null) {
         // get the actual user subscription
         $user = $this->getUser();
 
@@ -49,5 +54,8 @@ class SubscriptionController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
         return $this->redirectToRoute('app_profile');
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 }
