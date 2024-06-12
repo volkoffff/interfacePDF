@@ -4,12 +4,14 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-   <h1>Profile</h1>
-    {{ user.email }}
-    {{ user.tokens }} / {{ subscription.pdfLimit }}
-   {{ subscription.title }}
-   {{ subscription.description }}
-
-</div>
+   <div class="h-screen w-full flex items-center justify-center">
+      <div class="bg-black/40 backdrop-blur-md rounded-xl p-6 w-[380px] space-y-3">
+         <h1 class="text-4xl font-bold">Profile</h1>
+         <h2 class="text-xl font-semibold">Info de l'utilisateur</h2>
+          <p>{{ user.email }}</p>
+         <h2 class="text-xl font-semibold">abonnement</h2>
+          <p>{{ user.tokens }} / {{ subscription.pdfLimit }}</p>
+         <p>{{ subscription.title }} - {{ subscription.description }}</p>
+      </div>
+   </div>
 {% endblock %}
